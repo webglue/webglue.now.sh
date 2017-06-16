@@ -1,26 +1,65 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="/manifest.json">
   <title>Live Event Log</title>
 </head>
 <body>
-  <div id="app">
-    <button type="button" @click="sendMeAPush">Send Me A Push</button><br>
-    <div class="notification" v-for="note of notifications">{{note}}</div>
-    <hr>
-    <div class="message" v-for="msg of messages">{{msg[0]}}: {{JSON.stringify(msg[1])}}</div>
-    <virebase ref="virebase"
-      api-key="AIzaSyBZVuEpoZJJhaE9xfHSs6hgCUs3FVXx03E"
-      auth-domain="web-glue.firebaseapp.com"
-      database-url="https://web-glue.firebaseio.com"
-      project-id="web-glue"
-      storage-bucket="web-glue.appspot.com"
-      messaging-sender-id="555685705898"
-    ></virebase>
-  </div>
   <script src="https://unpkg.com/vue"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.yellow-deep_orange.min.css">
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.1.1/firebaseui.js"></script>
+  <!-- Always shows a header, even in smaller screens. -->
+  <div id="app" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Live Event Log</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="color: white">Log In</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Log In</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <!-- Your content goes here -->
+        <!-- Accent-colored raised button with ripple -->
+        <button id="send-me-a-push" type="button" @click="sendMeAPush" style="position: absolute; right: 50px; bottom: 50px;" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+          <i class="material-icons" style="color: white">backup</i>
+        </button>
+        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="send-me-a-push">
+          Send Me a Push
+        </div>
+        <br>
+        <div class="notification" v-for="note of notifications">{{note}}</div>
+        <hr>
+        <div class="message" v-for="msg of messages">{{msg[0]}}: {{JSON.stringify(msg[1])}}</div>
+        <virebase ref="virebase"
+          api-key="AIzaSyBZVuEpoZJJhaE9xfHSs6hgCUs3FVXx03E"
+          auth-domain="web-glue.firebaseapp.com"
+          database-url="https://web-glue.firebaseio.com"
+          project-id="web-glue"
+          storage-bucket="web-glue.appspot.com"
+          messaging-sender-id="555685705898"
+        ></virebase>
+      </div>
+    </main>
+  </div>
   
   <script>
   var Virebase = Vue.extend({
