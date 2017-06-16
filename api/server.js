@@ -36,7 +36,7 @@ app.post('/:event(*)', function (req, res) {
   let event = {
     event: req.params.event,
     method: 'POST',
-    origin: req.headers.origin || req.headers.referer,
+    origin: req.headers.origin || req.headers.referer || req.headers['user-agent'],
     payload: (req.params.event in templates) ? templates[req.params.event](req.body) : req.body
   }
   io.emit(req.params.event, event) // for subscribers
