@@ -1,0 +1,23 @@
+{
+  "name": "api.webglue",
+  "version": "0.0.0",
+  "description": "Relay webhook notifications to WebSocket subscribers",
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "now",
+    "publish": "now alias",
+    "test": "echo \"No tests written yet\" && exit 0"
+  },
+  "now": {
+    "alias": "api.webglue.now.sh",
+    "dotenv": ".env"
+  },
+  "author": "William Hilton <wmhilton@gmail.com>",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "firebase-admin": "^5.0.0",
+    "flattenjs": "^1.0.4",
+    "socket.io": "^2.0.2"
+  }
+}

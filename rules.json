@@ -1,0 +1,21 @@
+{
+  "rules": [
+    {
+      "method": [
+        "POST"
+      ],
+      "dest": "api-webglue.now.sh"
+    },
+    {
+      "pathname": "/socket.io/",
+      "dest": "api-webglue.now.sh/socket.io/"
+    },
+    {
+      "pathname": "/socket.io/socket.io.js",
+      "dest": "api-webglue.now.sh/socket.io/socket.io.js"
+    },
+    {
+      "dest": "static-webglue.now.sh"
+    }
+  ]
+}

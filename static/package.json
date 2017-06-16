@@ -1,0 +1,12 @@
+{
+  "name": "webglue",
+  "now": {
+    "alias": "static-webglue.now.sh"
+  },
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "serve": "latest"
+  }
+}
