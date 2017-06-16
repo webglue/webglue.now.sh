@@ -26,7 +26,9 @@ app.use(function (req, res, next) {
 
 // Host a small webpage (for demonstration / debugging / testing)
 // TODO: disable this in production
-app.use(express.static(__dirname + '/../static'))
+if (process.env.NOW === undefined) {
+  app.use(express.static(__dirname + '/../static'))
+}
 
 // Forward POST requests to websocket listeners
 app.post('/:event(*)', function (req, res) {
@@ -34,7 +36,7 @@ app.post('/:event(*)', function (req, res) {
   let event = {
     event: req.params.event,
     method: 'POST',
-    origin: req.headers['origin'],
+    origin: req.headers.origin || req.headers.referer,
     payload: (req.params.event in templates) ? templates[req.params.event](req.body) : req.body
   }
   io.emit(req.params.event, event) // for subscribers
