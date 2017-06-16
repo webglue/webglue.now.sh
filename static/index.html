@@ -51,10 +51,31 @@
         <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="send-me-a-push">
           Send Me a Push
         </div>
-        <br>
-        <div class="notification" v-for="note of notifications">{{note}}</div>
-        <hr>
-        <div class="message" v-for="msg of messages">{{msg[0]}}: {{JSON.stringify(msg[1])}}</div>
+        <table style="margin: 2vw; width: 96vw" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Arrived At</th>
+              <th class="mdl-data-table__cell--non-numeric">Method</th>
+              <th class="mdl-data-table__cell--non-numeric">Origin</th>
+              <th class="mdl-data-table__cell--non-numeric">Payload</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="event of events">
+              <td class="mdl-data-table__cell--non-numeric">{{(new Date(event.arrived)).toLocaleString()}}</td>
+              <td class="mdl-data-table__cell--non-numeric">{{event.method}}</td>
+              <td class="mdl-data-table__cell--non-numeric">{{event.origin}}</td>
+              <td class="mdl-data-table__cell--non-numeric">
+                <details>
+                  <summary>{{event.summary}}</summary>
+                  <code>
+                    <pre>{{JSON.stringify(event.payload, null, 2)}}</pre>
+                  </code>
+                </details>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <virebase ref="virebase"
           api-key="AIzaSyBZVuEpoZJJhaE9xfHSs6hgCUs3FVXx03E"
           auth-domain="web-glue.firebaseapp.com"
@@ -136,20 +157,14 @@
       'virebase': Virebase
     },
     data: {
-      messages: [],
-      notifications: [],
+      events: [],
       deviceToken: ''
     },
     created () {
       this.socket = io()
       // How to listen to all events
-      this.socket.on('*', function (msg) {
-        app.messages.push(msg)
-      })
-      this.socket.on('build-status', function (msg) {
-        console.log(msg)
-        let s = msg.commit_status
-        app.notifications.push(msg)
+      this.socket.on('*', (msg) => {
+        this.events.unshift({method: msg.method, origin: msg.origin, summary: msg.event, payload: msg.payload, arrived: Date.now()})
       })
       // How to listen to a specific event
       this.socket.on('alert', function (msg) {
@@ -159,7 +174,7 @@
     mounted () {
       this.$refs.virebase.messaging.onMessage((payload) => {
         console.log('payload =', payload)
-        this.notifications.push(`${payload.notification.title}: ${payload.notification.body}`)
+        this.events.unshift({method: 'Push Message', origin: payload.from, summary: payload.notification.title, payload, arrived: Date.now()})
       })
     },
     methods: {

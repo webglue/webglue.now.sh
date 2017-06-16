@@ -1,5 +1,5 @@
 {
-  "name": "api.webglue",
+  "name": "api-webglue",
   "version": "0.0.0",
   "description": "Relay webhook notifications to WebSocket subscribers",
   "scripts": {

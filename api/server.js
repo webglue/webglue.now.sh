@@ -23,22 +23,22 @@ app.use(function (req, res, next) {
   }
   next()
 })
-//
-// // Host a small webpage (for demonstration / debugging / testing)
-// app.use(express.static(__dirname + '/static'))
-// app.get('*', function(req, res) {
-//   return res.status(404).json({error: true, message: '404 Not found', url: req.originalUrl})
-// })
+
+// Host a small webpage (for demonstration / debugging / testing)
+// TODO: disable this in production
+app.use(express.static(__dirname + '/../static'))
 
 // Forward POST requests to websocket listeners
-app.post('/:event', function (req, res) {
+app.post('/:event(*)', function (req, res) {
   // TODO: Be selective about which listeners
-  if (req.params.event in templates) {
-    io.emit(req.params.event, templates[req.params.event](req.body))
-  } else {
-    io.emit(req.params.event, req.body) // for subscribers
+  let event = {
+    event: req.params.event,
+    method: 'POST',
+    origin: req.headers['origin'],
+    payload: (req.params.event in templates) ? templates[req.params.event](req.body) : req.body
   }
-  io.emit('*', [req.params.event, req.body]) // for general logging everything
+  io.emit(req.params.event, event) // for subscribers
+  io.emit('*', event) // for general logging everything
   res.status(200).json({success: true, message: 'Sent', clientsCount: io.engine.clientsCount})
 })
 
