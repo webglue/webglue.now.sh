@@ -1,3 +1,14 @@
 {
-  "gcm_sender_id": "103953800507"
+    "name": "Webglue",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "gcm_sender_id": "103953800507"
 }
