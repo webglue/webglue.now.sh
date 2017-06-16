@@ -74,9 +74,9 @@ io.on('connection', (socket) => {
       let payload = {
         notification: {
           title: 'send-me-a-push',
-          icon: 'https://swordfish-bitbucket-webhooks.now.sh/webglue.png',
+          icon: 'https://webglue.now.sh/webglue.png',
           body: `You asked for a push notification at ${(new Date).toLocaleString()}`,
-          clickAction: 'https://swordfish-bitbucket-webhooks.now.sh',
+          clickAction: 'https://webglue.now.sh',
           tag: 'send-me-a-push'
         }
       }
