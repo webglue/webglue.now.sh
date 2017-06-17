@@ -95,6 +95,6 @@ io.on('connection', (socket) => {
 
 
 // Listen on PORT environment variable
-server.listen(process.env.PORT || 80, function () {
+server.listen(process.env.NOW ? 80 : 8080, function () {
   console.log('server started')
 })

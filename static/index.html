@@ -30,8 +30,8 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="">Link</a>
           <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-navigation__link" href="">Link</a>
-          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="color: white">Log In</a>
+          <a class="mdl-navigation__link" @click="active_page = 'live-event-log'">Live Event Log</a>
+          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="color: white" @click="active_page = 'login'">Log In</a>
         </nav>
       </div>
     </header>
@@ -42,7 +42,10 @@
       </nav>
     </div>
     <main class="mdl-layout__content">
-      <div class="page-content">
+      <div v-show="active_page == 'login'" id="login">
+        <div id="firebaseui-auth-container"></div>
+      </div>
+      <div v-show="active_page == 'live-event-log'" id="live-event-log">
         <!-- Your content goes here -->
         <!-- Accent-colored raised button with ripple -->
         <button id="send-me-a-push" type="button" @click="sendMeAPush" style="position: absolute; right: 50px; bottom: 50px;" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
@@ -88,111 +91,6 @@
     </main>
   </div>
   
-  <script>
-  var Virebase = Vue.extend({
-    data () {
-      return {
-        messaging: null,
-        deviceToken: null
-      }
-    },
-    template: '<span></span>',
-    props: [
-      'apiKey',
-      'authDomain',
-      'databaseURL',
-      'projectId',
-      'storageBucket',
-      'messagingSenderId'
-    ],
-    created () {
-      // Initialize Firebase
-      firebase.initializeApp(this.$props)
-      // Retrieve Firebase Messaging object.
-      this.messaging = firebase.messaging()
-      // Callback fired if Instance ID token is updated.
-      this.messaging.onTokenRefresh(() => this.getToken())
-    },
-    methods: {
-      requestPermission () {
-        this.messaging.requestPermission()
-        .then(() => {
-          console.log('Notification permission granted.')
-          this.getToken()
-        })
-        .catch((err) => {
-          console.log('Unable to get permission to notify.', err)
-        })
-      },
-      getToken () {
-        // Get Instance ID token. Initially this makes a network call, once retrieved
-        // subsequent calls to getToken will return from cache.
-        this.messaging.getToken()
-        .then((currentToken) => {
-          if (currentToken) {
-            //  sendTokenToServer(currentToken)
-            //  updateUIForPushEnabled(currentToken)
-            console.log('currentToken =', currentToken)
-            this.deviceToken = currentToken
-          } else {
-            // Show permission request.
-            console.log('No Instance ID token available. Request permission to generate one.')
-            // Show permission UI.
-            //  updateUIForPushPermissionRequired()
-            //  setTokenSentToServer(false)
-          }
-        })
-        .catch(function(err) {
-          console.log('An error occurred while retrieving token. ', err)
-          //  showToken('Error retrieving Instance ID token. ', err)
-          //  setTokenSentToServer(false)
-        })
-      }
-    }
-  })
-  
-  var app = new Vue({
-    el: '#app',
-    components: {
-      'virebase': Virebase
-    },
-    data: {
-      events: [],
-      deviceToken: ''
-    },
-    created () {
-      this.socket = io()
-      // How to listen to all events
-      this.socket.on('*', (msg) => {
-        this.events.unshift({method: msg.method, origin: msg.origin, summary: msg.event, payload: msg.payload, arrived: Date.now()})
-      })
-      // How to listen to a specific event
-      this.socket.on('alert', function (msg) {
-        alert(JSON.stringify(msg))
-      })
-    },
-    mounted () {
-      this.$refs.virebase.messaging.onMessage((payload) => {
-        console.log('payload =', payload)
-        this.events.unshift({method: 'Push Message', origin: payload.from, summary: payload.notification.title, payload, arrived: Date.now()})
-      })
-    },
-    methods: {
-      sendMeAPush () {
-        this.$refs.virebase.messaging.getToken()
-        .then((token) => {
-          if (token) {
-            this.socket.emit('send-me-a-push', {deviceToken: token})
-          } else {
-            this.$refs.virebase.messaging.requestPermission()
-          }
-        })
-        .catch((err) => {
-          console.log('err =', err)
-        })
-      }
-    }
-  })
-  </script>
+  <script src="index.js"></script>
 </body>
 </html>
