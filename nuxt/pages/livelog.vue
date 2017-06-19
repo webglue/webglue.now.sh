@@ -50,6 +50,7 @@
 <script>
 import Navbar from '~components/Navbar.vue'
 import io from 'socket.io-client'
+import firebase from 'firebase'
 export default {
   head: {
     title: 'Live Event Log'
@@ -72,10 +73,25 @@ export default {
     this.socket.on('alert', function (msg) {
       alert(JSON.stringify(msg))
     })
+    // How to listen to Push Message events on live page
+    firebase.messaging().onMessage((payload) => {
+      console.log('payload =', payload)
+      this.events.unshift({method: 'Push Message', origin: payload.from, summary: payload.notification.title, payload, arrived: Date.now()})
+    })
   },
   methods: {
     sendMeAPush () {
-      alert('TODO')
+      firebase.messaging().getToken()
+      .then((token) => {
+        if (token) {
+          this.socket.emit('send-me-a-push', {deviceToken: token})
+        } else {
+          firebase.messaging().requestPermission()
+        }
+      })
+      .catch((err) => {
+        console.log('err =', err)
+      })
     }
   }
 }
