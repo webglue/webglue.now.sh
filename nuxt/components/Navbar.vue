@@ -14,12 +14,12 @@
         <a href="" class="mdl-navigation__link">
           Link
         </a>
-        <a @click="active_page = 'live-event-log'" class="mdl-navigation__link">
+        <nuxt-link to="/livelog" class="mdl-navigation__link">
           Live Event Log
-        </a>
-        <a style="color: white" @click="active_page = 'login'" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        </nuxt-link>
+        <nuxt-link style="color: white" to="/login" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
           Log In
-        </a>
+        </nuxt-link>
       </nav>
     </div>
   </header>
