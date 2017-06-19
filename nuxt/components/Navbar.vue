@@ -3,17 +3,11 @@
     <div class="mdl-layout__header-row">
       <!-- Title -->
       <span class="mdl-layout-title">
-        Live Event Log
+        {{title}}
       </span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
-        <a href="" class="mdl-navigation__link">
-          Link
-        </a>
-        <a href="" class="mdl-navigation__link">
-          Link
-        </a>
         <nuxt-link to="/livelog" class="mdl-navigation__link">
           Live Event Log
         </nuxt-link>
@@ -24,3 +18,14 @@
     </div>
   </header>
 </template>
+
+<script>
+import routeName from '~/utils/routeName'
+export default {
+  computed: {
+    title () {
+      return routeName[this.$route.name]
+    }
+  }
+}
+</script>

@@ -37,6 +37,13 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    },
+    build: {
+      vendor: [
+        'socket.io',
+        'firebase',
+        'firebaseui'
+      ]
     }
   }
 }

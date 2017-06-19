@@ -1,32 +1,41 @@
 <template>
-  <div>
+  <section class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <Navbar></Navbar>
+    <SideDrawer></SideDrawer>
     <nuxt/>
     <script src="/material-design-lite/material.min.js"></script>
-  </div>
+  </section>
 </template>
 
-<style src="~static/material-design-lite/material.min.css"></style>
+<!-- <style src="~static/material-design-lite/material.min.css"></style> -->
 
 <script>
-import firebase from 'firebase'
-import config from '~/config.json'
+import Navbar from '~components/Navbar.vue'
+import SideDrawer from '~components/SideDrawer.vue'
+import firebaseapp from '~/utils/firebaseapp'
 export default {
   head: {
     link: [
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+      { rel: 'stylesheet', href: '/material-design-lite/material.min.css' }
     ]
   },
   components: {
+    Navbar,
+    SideDrawer
   },
   mounted () {
-    firebase.initializeApp(config.firebase)
-    firebase.messaging().onTokenRefresh(() => this.getToken())
+    firebaseapp.messaging().onTokenRefresh(() => this.getToken())
+    firebaseapp.auth().onAuthStateChanged(this.onAuthStateChanged.bind(this), console.log)
   },
   methods: {
+    pageTitle () {
+      return global.title
+    },
     getToken () {
       // Get Instance ID token. Initially this makes a network call, once retrieved
       // subsequent calls to getToken will return from cache.
-      firebase.messaging().getToken()
+      firebaseapp.messaging().getToken()
       .then((currentToken) => {
         if (currentToken) {
           //  sendTokenToServer(currentToken)
@@ -48,7 +57,7 @@ export default {
       })
     },
     requestPermission () {
-      firebase.messaging().requestPermission()
+      firebaseapp.messaging().requestPermission()
       .then(() => {
         console.log('Notification permission granted.')
         this.getToken()
@@ -56,6 +65,13 @@ export default {
       .catch((err) => {
         console.log('Unable to get permission to notify.', err)
       })
+    },
+    onAuthStateChanged (user) {
+      if (user) {
+        console.log(user) // Vue.set(this, 'user', user)
+      } else {
+        this.user = null
+      }
     }
   }
 }
