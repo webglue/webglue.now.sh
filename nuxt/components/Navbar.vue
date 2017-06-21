@@ -8,6 +8,12 @@
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
+        <nuxt-link to="/account" class="mdl-navigation__link">
+          Edit Account
+        </nuxt-link>
+        <nuxt-link to="/glue" class="mdl-navigation__link">
+          Edit Glues
+        </nuxt-link>
         <nuxt-link to="/livelog" class="mdl-navigation__link">
           Live Event Log
         </nuxt-link>

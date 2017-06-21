@@ -69,8 +69,9 @@ export default {
     onAuthStateChanged (user) {
       if (user) {
         console.log(user) // Vue.set(this, 'user', user)
+        this.$store.commit('SET_USER', user)
       } else {
-        this.user = null
+        this.$store.commit('SET_USER', null)
       }
     }
   }

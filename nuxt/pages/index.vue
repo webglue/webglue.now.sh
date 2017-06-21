@@ -1,11 +1,7 @@
 <template>
-  <section class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <Navbar></Navbar>
-    <SideDrawer></SideDrawer>
-    <main class="mdl-layout__content">
-      <p>Click a link above.</p>
-    </main>
-  </section>
+  <main class="mdl-layout__content">
+    <p>Click a link above.</p>
+  </main>
 </template>
 
 <script>

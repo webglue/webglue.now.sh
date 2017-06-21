@@ -10,6 +10,7 @@
 import firebase from 'firebase'
 import firebaseapp from '~/utils/firebaseapp.js'
 // import firebaseui from 'firebaseui'
+let authui
 
 export default {
   head: {
@@ -18,15 +19,15 @@ export default {
   components: {
   },
   mounted () {
-    if (this.$root.ui) {
-      this.$root.ui.reset()
+    if (authui) {
+      authui.reset()
     } else {
       let firebaseui = require('firebaseui')
-      this.$root.ui = new firebaseui.auth.AuthUI(firebaseapp.auth())
+      authui = new firebaseui.auth.AuthUI(firebaseapp.auth())
     }
     // Initialize the Auth Firebase UI
-    this.$root.ui.start('#firebaseui-auth-container', {
-      signInSuccessUrl: 'https://webglue.now.sh',
+    authui.start('#firebaseui-auth-container', {
+      signInSuccessUrl: '/account',
       signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -41,8 +42,8 @@ export default {
     })
   },
   beforeDestroy () {
-    if (this.$root.ui) {
-      this.$root.ui.reset()
+    if (authui) {
+      authui.reset()
     }
   }
 }
