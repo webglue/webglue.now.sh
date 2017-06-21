@@ -15,7 +15,7 @@
       "dest": "api-webglue.now.sh/socket.io/socket.io.js"
     },
     {
-      "dest": "static-webglue.now.sh"
+      "dest": "nuxt-webglue.now.sh"
     }
   ]
 }

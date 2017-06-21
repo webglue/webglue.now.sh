@@ -4,6 +4,9 @@
   "description": "Nuxt.js project",
   "author": "Will Hilton <wmhilton@gmail.com>",
   "private": true,
+  "now": {
+    "alias": "nuxt-webglue.now.sh"
+  },
   "dependencies": {
     "firebase": "^4.1.2",
     "firebaseui": "^2.1.1",
