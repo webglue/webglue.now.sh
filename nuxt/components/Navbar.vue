@@ -11,7 +11,7 @@
         <nuxt-link to="/account" class="mdl-navigation__link">
           Edit Account
         </nuxt-link>
-        <nuxt-link to="/glue" class="mdl-navigation__link">
+        <nuxt-link to="/glues" class="mdl-navigation__link">
           Edit Glues
         </nuxt-link>
         <nuxt-link to="/livelog" class="mdl-navigation__link">

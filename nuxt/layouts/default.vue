@@ -4,6 +4,7 @@
     <SideDrawer></SideDrawer>
     <nuxt/>
     <script src="/material-design-lite/material.min.js"></script>
+    <!-- // <script defer src="/getmdl-select/getmdl-select.min.js"></script> -->
   </section>
 </template>
 
@@ -18,6 +19,7 @@ export default {
     link: [
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
       { rel: 'stylesheet', href: '/material-design-lite/material.min.css' }
+      // { rel: 'stylesheet', href: '/getmdl-select/getmdl-select.min.css' }
     ]
   },
   components: {
