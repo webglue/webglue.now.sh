@@ -1,14 +1,27 @@
 <template>
-  <section class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <section>
     <Navbar></Navbar>
     <SideDrawer></SideDrawer>
     <nuxt/>
-    <script src="/material-design-lite/material.min.js"></script>
+    <!-- // <script src="/material-design-lite/material.min.js"></script> -->
     <!-- // <script defer src="/getmdl-select/getmdl-select.min.js"></script> -->
   </section>
 </template>
 
-<!-- <style src="~static/material-design-lite/material.min.css"></style> -->
+<style>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+}
+html {
+  font-size: 100%;
+}
+</style>
+<style src="~/node_modules/keen-ui/dist/keen-ui.css"></style>
 
 <script>
 import Navbar from '~components/Navbar.vue'
@@ -17,8 +30,8 @@ import firebaseapp from '~/utils/firebaseapp'
 export default {
   head: {
     link: [
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
-      { rel: 'stylesheet', href: '/material-design-lite/material.min.css' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      // { rel: 'stylesheet', href: '/material-design-lite/material.min.css' }
       // { rel: 'stylesheet', href: '/getmdl-select/getmdl-select.min.css' }
     ]
   },

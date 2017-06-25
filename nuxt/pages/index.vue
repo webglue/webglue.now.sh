@@ -9,9 +9,6 @@ import Navbar from '~components/Navbar.vue'
 import SideDrawer from '~components/SideDrawer.vue'
 
 export default {
-  head: {
-    title: 'Live Event Log'
-  },
   components: {
     Navbar,
     SideDrawer

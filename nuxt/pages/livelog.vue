@@ -43,9 +43,6 @@ import io from 'socket.io-client'
 import firebase from '~/utils/firebaseapp'
 
 export default {
-  head: {
-    title: 'Live Event Log'
-  },
   components: {
   },
   data () {

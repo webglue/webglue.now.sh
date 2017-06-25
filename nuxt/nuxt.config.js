@@ -38,12 +38,14 @@ module.exports = {
         })
       }
     },
-    build: {
-      vendor: [
-        'socket.io',
-        'firebase',
-        'firebaseui'
-      ]
-    }
-  }
+    vendor: [
+      'socket.io-client',
+      'firebase',
+      'firebaseui',
+      'keen-ui'
+    ]
+  },
+  plugins: [
+    { src: '~plugins/keen-ui', ssr: false }
+  ]
 }

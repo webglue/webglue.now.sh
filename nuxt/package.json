@@ -10,6 +10,7 @@
   "dependencies": {
     "firebase": "^4.1.2",
     "firebaseui": "^2.1.1",
+    "keen-ui": "^1.0.0",
     "nuxt": "latest",
     "promise-polyfill": "^6.0.2",
     "socket.io": "^2.0.3",
