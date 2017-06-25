@@ -1,0 +1,10 @@
+{
+  "firebase": {
+    "apiKey": "AIzaSyBZVuEpoZJJhaE9xfHSs6hgCUs3FVXx03E",
+    "authDomain": "web-glue.firebaseapp.com",
+    "databaseUrl": "https://web-glue.firebaseio.com",
+    "projectId": "web-glue",
+    "storageBucket": "web-glue.appspot.com",
+    "messagingSenderId": "555685705898"
+  }
+}
