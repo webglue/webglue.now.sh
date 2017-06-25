@@ -25,6 +25,9 @@ export default new VueRouter({
       path: '/',
       component: load('Index'),
       children: [{
+        path: '/',
+        component: load('About')
+      }, {
         path: '/livelog',
         component: load('LiveLog')
       }, {
@@ -36,6 +39,15 @@ export default new VueRouter({
       }, {
         path: '/logout',
         component: load('Logout')
+      }, {
+        path: '/glues',
+        component: load('ListGlues')
+      }, {
+        path: '/edit',
+        component: load('EditGlue')
+      }, {
+        path: '/*',
+        component: load('Error404')
       }]
     },
     {

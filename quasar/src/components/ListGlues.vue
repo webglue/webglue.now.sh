@@ -1,35 +1,21 @@
 <template>
   <div>
     <div class="layout-padding">
-      <button class="circular primary" @click="sendMeAPush">
-        <i>backup</i>
-        <q-tooltip>Send me a Push</q-tooltip>
+      <button class="circular primary" @click="newGlue">
+        <i>add</i>
       </button>
 
-      <table class="q-table bordered horizontal-delimiter striped-odd light-paragraph" style="width: 100%">
+      <table class="q-table bordered horizontal-delimiter striped-odd light-paragraph">
         <thead>
           <tr>
-            <th class="text-left">Arrived At</th>
-            <th class="text-left">Sent Via</th>
-            <th class="text-left">Origin</th>
-            <th class="text-left">Received Via</th>
-            <th class="text-left">Payload</th>
+            <th class="text-left">Input</th>
+            <th class="text-left">Output</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="event of events">
-            <td class="text-left">{{(new Date(event.arrived)).toLocaleString()}}</td>
+          <tr v-for="glue of glues">
             <td class="text-left">{{event.sentVia}}</td>
             <td class="text-left">{{event.origin}}</td>
-            <td class="text-left">{{event.receivedVia}}</td>
-            <td class="text-left">
-              <details>
-                <summary>{{event.summary}}</summary>
-                <code>
-                  <pre>{{JSON.stringify(event.payload, null, 2)}}</pre>
-                </code>
-              </details>
-            </td>
           </tr>
         </tbody>
       </table>

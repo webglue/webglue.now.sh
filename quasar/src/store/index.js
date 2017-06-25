@@ -54,6 +54,34 @@ export default new Vuex.Store({
     },
     events (state) {
       return state.events
+    },
+    eventTypes (state) {
+      return [
+        {
+          label: 'Webhook',
+          value: 'Webhook'
+        },
+        {
+          label: 'Socket.io',
+          value: 'Socket.io'
+        }
+      ]
+    },
+    signalTypes (state) {
+      return [
+        {
+          label: 'Webhook',
+          value: 'Webhook'
+        },
+        {
+          label: 'Socket.io',
+          value: 'Socket.io'
+        },
+        {
+          label: 'Push Message',
+          value: 'Push Message'
+        }
+      ]
     }
   },
   actions: {

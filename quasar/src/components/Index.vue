@@ -1,32 +1,20 @@
 <template>
   <q-layout>
     <div slot="header" class="toolbar">
-
       <q-toolbar-title :padding="0">
         Webglue
       </q-toolbar-title>
-
-      <button
-        class="hide-on-drawer-visible"
-        @click="$refs.drawer.open()"
-      >
+      <button class="hide-on-drawer-visible" @click="$refs.drawer.open()">
         <i>menu</i>
       </button>
     </div>
 
-    <!--
-      Replace following "div" with
-      "<router-view class="layout-view">" component
-      if using subRoutes
-    -->
-    <router-view class="layout-view">
-    </router-view>
+    <router-view class="layout-view"></router-view>
 
     <q-drawer ref="drawer" right-side>
-
       <div class="toolbar light">
         <q-toolbar-title :padding="1">
-            Drawer
+            Navigation
         </q-toolbar-title>
       </div>
       <div class="list no-border platform-delimiter">
