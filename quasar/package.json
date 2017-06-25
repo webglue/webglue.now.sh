@@ -1,11 +1,12 @@
 {
-  "name": "quasar-app",
+  "name": "quasar-webglue",
   "version": "0.0.1",
   "description": "A Quasar App",
-  "author": "Your Name",
+  "author": "Will Hilton <wmhilton@gmail.com>",
   "scripts": {
     "clean": "node build/script.clean.js",
     "dev": "node build/script.dev.js",
+    "start": "node build/script.prod.js",
     "build": "node build/script.build.js",
     "lint": "eslint --ext .js,.vue src"
   },
@@ -70,5 +71,8 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.17.0",
     "webpack-merge": "^4.0.0"
+  },
+  "now": {
+    "alias": "quasar-webglue.now.sh"
   }
 }
