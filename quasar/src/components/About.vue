@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
       <div class="card">
         <div class="card-title bg-primary text-white">
@@ -25,5 +25,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>

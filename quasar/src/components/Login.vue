@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
       <div id="firebaseui-auth-container"></div>
     </div>
-  </div>
+  </main>
 </template>
 
 <style src="firebaseui/dist/firebaseui.css"></style>

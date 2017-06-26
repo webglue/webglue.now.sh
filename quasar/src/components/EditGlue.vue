@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
       <div v-if="user" class="card">
         <div class="card-content">
@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

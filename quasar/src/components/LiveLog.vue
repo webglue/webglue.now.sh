@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
       <button class="circular primary" @click="sendMeAPush">
         <i>backup</i>
@@ -34,7 +34,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

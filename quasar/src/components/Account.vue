@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
       <table v-if="user" class="q-table bordered horizontal-delimiter striped-odd light-paragraph">
         <thead>
@@ -27,7 +27,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

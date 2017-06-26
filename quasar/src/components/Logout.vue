@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

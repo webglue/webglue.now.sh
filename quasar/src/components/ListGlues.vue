@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <div class="layout-padding">
       <button class="circular primary" @click="newGlue">
         <i>add</i>
@@ -20,7 +20,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
