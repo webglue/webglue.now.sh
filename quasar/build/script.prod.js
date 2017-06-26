@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'production'
 var
   path = require('path'),
   express = require('express'),
+  compression = require('compression'),
   env = require('./env-utils'),
   config = require('../config'),
   proxyMiddleware = require('http-proxy-middleware'),
@@ -29,6 +30,9 @@ Object.keys(proxyTable).forEach(function (context) {
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
+
+// use gzip compression
+app.use(compression())
 
 // serve dist
 app.use(webpackConfig.output.publicPath, express.static('./dist'))
