@@ -1,5 +1,6 @@
 {
     "name": "Webglue",
+    "short_name": "Webglue",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
